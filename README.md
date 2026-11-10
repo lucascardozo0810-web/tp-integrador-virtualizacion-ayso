@@ -50,24 +50,24 @@ Este proyecto aborda la investigación e implementación práctica de tecnologí
 
 ### 6.1. Configuración de la Máquina Virtual
 Aprovisionamiento de recursos de cómputo (RAM, vCPU, almacenamiento y adaptador de red NAT) en VirtualBox.
-![Configuración VM](capturas/01_configuracion_vm.png)
+![Configuración VM](capturas/01_configuracion_vm.png.png)
 
 ### 6.2. Configuración de Usuario y Servidor
 Definición de nombre de equipo (`ubuntu-servidor-ayso`), usuario (`lucas`) y credenciales administrativas.
-![Configuración de Usuario](capturas/02_configuracion_usuario.png)
+![Configuración de Usuario](capturas/02_configuracion_usuario.png.png)
 
 ### 6.3. Instalación de OpenSSH Server
 Habilitación del paquete OpenSSH y configuración de autenticación remota durante el despliegue.
-![Instalación OpenSSH](capturas/03_instalacion_openssh.png)
+![Instalación OpenSSH](capturas/03_instalacion_openssh.png.png)
 
 ### 6.4. Finalización del Instalador
 Conclusión del particionado de disco, extracción de imagen base, kernel y gestor de arranque GRUB.
-![Instalación Completada](capturas/04_instalacion_completada.png)
+![Instalación Completada](capturas/04_instalacion_completada.png.png)
 
 ### 6.5. Primer Inicio de Sesión
 Inicialización completa del sistema con `cloud-init`, generación de claves SSH de host y login interactivo por consola.
-![Primer Inicio de Sesión](capturas/05_primer_inicio_sesion.png)
+![Primer Inicio de Sesión](capturas/05_primer_inicio_sesion.png.png)
 
 ### 6.6. Verificación de Red y Estado de SSH
 Salida en terminal de los comandos `ip a` (IP `10.0.2.15/24`) y `systemctl status ssh` con estado `active (running)`.
-![Verificación de Red y SSH](capturas/06_verificacion_red_ssh.png)
+![Verificación de Red y SSH](capturas/06_verificacion_redssh.png.png)
