@@ -1,7 +1,7 @@
 # Trabajo Integrador: Virtualización y Computación en la Nube
-**Materia:** Arquitectura y Sistemas Operativos
-**Carrera:** Tecnicatura Universitaria en Programación a Distancia (TUPaD) - UTN
-**Año:** 2026
+**Materia:** Arquitectura y Sistemas Operativos  
+**Carrera:** Tecnicatura Universitaria en Programación a Distancia (TUPaD) - UTN  
+**Año:** 2026  
 
 ---
 
@@ -16,50 +16,58 @@ Este proyecto aborda la investigación e implementación práctica de tecnologí
   * **Tipo 1 (Bare-Metal):** Ejecución directa sobre hardware (VMware ESXi, Proxmox VE, KVM).
   * **Tipo 2 (Hosted):** Ejecución como aplicación sobre sistema operativo anfitrión (Oracle VirtualBox, VMware Workstation).
 * **Ejemplo Cloud (IaaS):** Modelos elásticos como AWS EC2 o Azure Virtual Machines, donde se asignan instancias virtuales aisladas a través de hipervisores optimizados sobre centros de datos físicos.
-* **Referencias Bibliográficas:**
-  * Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). Operating System Concepts.
-  * Tanenbaum, A. S., & Bos, H. (2015). Modern Operating Systems.
-  * Oracle Corporation. (2026). Oracle VM VirtualBox User Manual.
 
 ---
 
-## 3. Especificaciones del Caso Práctico
-* **Hardware Anfitrión (Host):**
-  * Procesador: AMD Ryzen 3 7000 Series (Soporte AMD-V habilitado)
-  * Memoria RAM: 8 GB
-  * Almacenamiento: SSD
-* **Software:**
-  * SO Anfitrión: Microsoft Windows 11 (64-bit)
-  * Hipervisor: Oracle VirtualBox 7.x (Tipo 2)
-  * SO Invitado (Guest): Ubuntu Linux (64-bit)
-* **Recursos Asignados a la VM:**
-  * vCPU: 2 núcleos virtuales
-  * vRAM: 2048 MB (2 GB)
-  * Disco Virtual: 20 GB (Formato VDI dinámico)
-  * Red: Modo NAT
+## 3. Especificaciones y Aprovisionamiento de la VM
+* **Nombre de la VM:** `ubuntu-servidor-AYSO`
+* **Sistema Operativo:** Ubuntu Server 26.04.1 LTS (64-bit)
+* **Memoria Base (RAM):** 2048 MB (2 GB)
+* **Procesadores (vCPU):** 2
+* **Disco Virtual:** 20 GB (Formato VDI dinámico)
+* **Red:** Modo NAT (Intel PRO/1000 MT Desktop)
 
 ---
 
-## 4. Pruebas y Validación de Comandos
-
-1. Verificación de Kernel y Arquitectura:
-   * uname -a
-   * lscpu | head -n 12
-
-2. Monitoreo de Recursos de Memoria:
-   * free -h
-
-3. Conectividad de Red:
-   * ip addr
-   * ping -c 4 8.8.8.8
-
-4. Despliegue y Estado de Servicio Web:
-   * sudo apt update && sudo apt install -y apache2
-   * systemctl status apache2 --no-pager
+## 4. Pruebas y Validación de Servicios
+1. **Configuración de Red:**
+   * `ip a` (Asignación por DHCP bajo interfaz `enp0s3` con IP `10.0.2.15/24`)
+2. **Servicio de Acceso Remoto:**
+   * `sudo systemctl status ssh` (Demonio OpenSSH activo en ejecución en el puerto 22)
+3. **Gestión Administrativa:**
+   * Usuario no-root con privilegios de superusuario (`sudo`) y autenticación habilitada.
 
 ---
 
 ## 5. Estructura del Repositorio
-* docs/: Documento final del trabajo integrador en formato PDF.
-* capturas/: Evidencias gráficas del aprovisionamiento, configuración y pruebas de terminal.
-* video/: Enlace al video demostrativo de autoría y funcionamiento.
+* `docs/`: Documento final del trabajo integrador en formato PDF.
+* `capturas/`: Evidencias gráficas del aprovisionamiento, configuración y pruebas de terminal.
+* `README.md`: Memoria técnica de la implementación.
+
+---
+
+## 6. Evidencias del Proceso de Instalación
+
+### 6.1. Configuración de la Máquina Virtual
+Aprovisionamiento de recursos de cómputo (RAM, vCPU, almacenamiento y adaptador de red NAT) en VirtualBox.
+![Configuración VM](capturas/01_configuracion_vm.png)
+
+### 6.2. Configuración de Usuario y Servidor
+Definición de nombre de equipo (`ubuntu-servidor-ayso`), usuario (`lucas`) y credenciales administrativas.
+![Configuración de Usuario](capturas/02_configuracion_usuario.png)
+
+### 6.3. Instalación de OpenSSH Server
+Habilitación del paquete OpenSSH y configuración de autenticación remota durante el despliegue.
+![Instalación OpenSSH](capturas/03_instalacion_openssh.png)
+
+### 6.4. Finalización del Instalador
+Conclusión del particionado de disco, extracción de imagen base, kernel y gestor de arranque GRUB.
+![Instalación Completada](capturas/04_instalacion_completada.png)
+
+### 6.5. Primer Inicio de Sesión
+Inicialización completa del sistema con `cloud-init`, generación de claves SSH de host y login interactivo por consola.
+![Primer Inicio de Sesión](capturas/05_primer_inicio_sesion.png)
+
+### 6.6. Verificación de Red y Estado de SSH
+Salida en terminal de los comandos `ip a` (IP `10.0.2.15/24`) y `systemctl status ssh` con estado `active (running)`.
+![Verificación de Red y SSH](capturas/06_verificacion_red_ssh.png)
